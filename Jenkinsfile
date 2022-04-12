@@ -1,10 +1,18 @@
+#!/usr/bin/env groovy
+
 pipeline {
-    agent { docker { image 'golang:1.17.5-alpine' } }
+    agent { docker { image 'golang' } }    
+
     stages {
-        stage('Compile') {
-            steps {
-                sh 'go build -o devops main.go'
-            }
+        stage('Build') {                
+            steps {      
+                sh 'cd ${GOPATH}/src'
+                sh 'mkdir -p ${GOPATH}/src/devops'
+
+                sh 'cp -r ${WORKSPACE}/* ${GOPATH}/src/devops'
+                sh 'go clean -cache'
+                sh 'go build'
+            }            
         }
     }
 }
