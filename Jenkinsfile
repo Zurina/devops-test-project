@@ -14,5 +14,8 @@ pipeline {
                 sh 'go build -o devops main.go'
             }            
         }
+        stage('Save Artifacts') {                
+            archiveArtifacts artifacts: 'devops', onlyIfSuccessful: true
+        }
     }
 }
