@@ -3,9 +3,7 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                sh 'GOCACHE=/tmp/'
-                sh 'GOCACHE=off'
-                sh 'go build'
+                sh 'go build -o devops main.go'
             }
         }
     }
