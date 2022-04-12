@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                sh 'sudo go build'
+                sh 'go build'
             }
         }
     }
