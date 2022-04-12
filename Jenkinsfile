@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
+                sh 'GOCACHE=off'
                 sh 'GOCACHE=/tmp/'
                 sh 'go build'
             }
