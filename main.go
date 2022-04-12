@@ -14,7 +14,7 @@ type Simple struct {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	simple := Simple{"Hello", "World", r.Host}
+	simple := Simple{"Hello", "Mathias", r.Host}
 
 	jsonOutput, _ := json.Marshal(simple)
 
@@ -24,5 +24,5 @@ func handler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	fmt.Println("Server started")
 	http.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8082", nil))
 }
