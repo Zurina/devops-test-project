@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Save Artifacts') {    
             steps {
-                archiveArtifacts artifacts: 'devops', onlyIfSuccessful: true
+                archiveArtifacts artifacts: '~/devops', onlyIfSuccessful: true
             }            
         }
     }
