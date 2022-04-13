@@ -19,5 +19,10 @@ pipeline {
                 archiveArtifacts artifacts: 'devops', onlyIfSuccessful: true
             }            
         }
+        stage('Move artifact') {    
+            steps {
+                sh 'sudo mv ./devops ~/'
+            }            
+        }
     }
 }
