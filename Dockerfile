@@ -1,6 +1,5 @@
 FROM golang:alpine as builder
 
-
 WORKDIR /app 
 
 COPY . .
@@ -13,6 +12,6 @@ WORKDIR /app
 
 COPY --from=builder /app/devops /usr/bin/
 
-EXPOSE 8082
+EXPOSE 8080
 
 ENTRYPOINT ["devops"]
