@@ -1,5 +1,6 @@
 FROM golang:alpine as builder
 
+
 WORKDIR /app 
 
 COPY . .
@@ -11,5 +12,7 @@ FROM scratch
 WORKDIR /app
 
 COPY --from=builder /app/devops /usr/bin/
+
+EXPOSE 8082
 
 ENTRYPOINT ["devops"]
