@@ -9,16 +9,16 @@ pipeline {
                 sh 'go test'
             }            
         }
-        stage('Build') {                
-            steps {      
-                sh 'go build -o devops main.go'
-            }            
-        }
-        stage('Save Artifacts') {    
-            steps {
-                archiveArtifacts artifacts: 'devops', onlyIfSuccessful: true
-            }            
-        }
+        // stage('Build') {                
+        //     steps {      
+        //         sh 'go build -o devops main.go'
+        //     }            
+        // }
+        // stage('Save Artifacts') {    
+        //     steps {
+        //         archiveArtifacts artifacts: 'devops', onlyIfSuccessful: true
+        //     }            
+        // }
 
         stage('DockerHub Auth') {
             steps {
