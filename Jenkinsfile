@@ -1,5 +1,3 @@
-#!/usr/bin/env groovy
-
 pipeline {
     agent any
 
@@ -10,10 +8,21 @@ pipeline {
             }            
         }
 
+        stage('Build') {                
+            steps {      
+                sh 'go build -o devops main.go'
+            }            
+        }
+        stage('Save Artifacts') {    
+            steps {
+                archiveArtifacts artifacts: 'devops', onlyIfSuccessful: true
+            }            
+        }
+
         stage('DockerHub Auth') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-auth', usernameVariable: 'username', passwordVariable: 'password')]) {
-                sh 'docker login --username ${username} --password ${password}'
+                sh 'echo ${password} | docker login --username ${username} --password-stdin'
                 }
             }   
         }
