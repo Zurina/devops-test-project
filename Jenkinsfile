@@ -8,17 +8,6 @@ pipeline {
             }            
         }
 
-        stage('Build') {                
-            steps {      
-                sh 'go build -o devops main.go'
-            }            
-        }
-        stage('Save Artifacts') {    
-            steps {
-                archiveArtifacts artifacts: 'devops', onlyIfSuccessful: true
-            }            
-        }
-
         stage('DockerHub Auth') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-auth', usernameVariable: 'username', passwordVariable: 'password')]) {
