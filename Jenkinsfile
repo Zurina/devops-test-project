@@ -22,7 +22,7 @@ pipeline {
         stage('Run QA Deployment') {
             when {
                 not {
-                    branch: "main"
+                    branch "main"
                 }
             }
             steps {
@@ -32,7 +32,7 @@ pipeline {
 
         stage('Run PROD Deployment') {
             when {
-                    branch: "main"
+                branch "main"
             }
             steps {
                 build job: 'devops-deploy', parameters: [string(name: 'DEPLOY_TO', value: "prod")]
