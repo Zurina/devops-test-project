@@ -19,22 +19,24 @@ pipeline {
             }            
         }
 
-        stage('DockerHub Auth') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-auth', usernameVariable: 'username', passwordVariable: 'password')]) {
-                sh 'echo ${password} | docker login --username ${username} --password-stdin'
+        stage('Run QA Deployment') {
+            when {
+                not {
+                    branch: "main"
                 }
+            }
+            steps {
+                build job: 'devops-deploy', parameters: [string(name: 'DEPLOY_TO', value: "qa")]
             }   
         }
-        stage('Building Docker image') {
-            steps {
-                sh 'docker build . --tag immassive/devops:${BUILD_ID}'
+
+        stage('Run PROD Deployment') {
+            when {
+                    branch: "main"
             }
-        }
-        stage('Pushing Docker image') {
             steps {
-                sh 'docker push immassive/devops:${BUILD_ID}'
-            }
+                build job: 'devops-deploy', parameters: [string(name: 'DEPLOY_TO', value: "prod")]
+            }   
         }
     }
 }
