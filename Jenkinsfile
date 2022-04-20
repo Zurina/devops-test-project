@@ -46,7 +46,7 @@ pipeline {
                     string(name: 'branch', value: env.BRANCH_NAME),
                     string(name: 'host_ip', value: '10.10.50.3')
                 ]
-            }   
+            }
         }
     }
 }
