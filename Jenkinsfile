@@ -29,7 +29,7 @@ pipeline {
                 build job: 'devops-deploy',
                 parameters: [
                     string(name: 'DEPLOY_TO', value: "qa"),
-                    string(name: 'branch', value: env.BRANCH_NAME)
+                    string(name: 'branch', value: env.BRANCH_NAME),
                     string(name: 'host_ip', value: '10.10.50.4')
                 ]
             }   
@@ -43,7 +43,7 @@ pipeline {
                 build job: 'devops-deploy',
                 parameters: [
                     string(name: 'DEPLOY_TO', value: "prod"), 
-                    string(name: 'branch', value: env.BRANCH_NAME)
+                    string(name: 'branch', value: env.BRANCH_NAME),
                     string(name: 'host_ip', value: '10.10.50.3')
                 ]
             }   
