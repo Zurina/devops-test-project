@@ -26,7 +26,8 @@ pipeline {
                 }
             }
             steps {
-                build job: 'devops-deploy', parameters: [string(name: 'DEPLOY_TO', value: "qa"), string(name: 'branch', value: env.BRANCH_NAME)]
+                build job: 'devops-deploy', parameters: [string(name: 'DEPLOY_TO', value: "qa"),
+                                                         string(name: 'branch', value: env.BRANCH_NAME)]
             }   
         }
 
@@ -35,7 +36,8 @@ pipeline {
                 branch "main"
             }
             steps {
-                build job: 'devops-deploy', parameters: [string(name: 'DEPLOY_TO', value: "prod"), string(name: 'branch', value: env.BRANCH_NAME)]
+                build job: 'devops-deploy', parameters: [string(name: 'DEPLOY_TO', value: "prod"), 
+                                                         string(name: 'branch', value: env.BRANCH_NAME)]
             }   
         }
     }
