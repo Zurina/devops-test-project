@@ -33,7 +33,7 @@ pipeline {
                 }
             }
             steps {
-                build job: 'devops-deploy',
+                build job: 'devops-deploy-k8s',
                 parameters: [
                     string(name: 'DEPLOY_TO', value: "qa"),
                     string(name: 'IMAGE_ID', value: ${BUILD_ID})
