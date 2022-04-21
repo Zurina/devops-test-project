@@ -25,5 +25,33 @@ pipeline {
                 sh 'docker push immassive/devops:${BUILD_ID}'
             }
         }
+
+        stage('Run QA Deployment') {
+            when {
+                not {
+                    branch "main"
+                }
+            }
+            steps {
+                build job: 'devops-deploy',
+                parameters: [
+                    string(name: 'DEPLOY_TO', value: "qa"),
+                    string(name: 'IMAGE_ID', value: ${BUILD_ID)
+                ]
+            }   
+        }
+
+        stage('Run PROD Deployment') {
+            when {
+                branch "main"
+            }
+            steps {
+                build job: 'devops-deploy-k8s',
+                parameters: [
+                    string(name: 'DEPLOY_TO', value: "prod"),
+                    string(name: 'IMAGE_ID', value: ${BUILD_ID)
+                ]
+            }   
+        }
     }
 }

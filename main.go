@@ -19,7 +19,7 @@ func SimpleFactory(host string) Simple {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Received request")
-	simple := Simple{"Hello", "Mathias", r.Host}
+	simple := Simple{"Hello", "Mathias v2", r.Host}
 	jsonOutput, _ := json.Marshal(simple)
 	fmt.Fprintln(w, string(jsonOutput))
 }
