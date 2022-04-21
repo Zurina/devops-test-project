@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Pushing Docker image') {
             steps {
-                sh 'docker push immassive/devops:${BUILD_ID}'
+                sh "docker push immassive/devops:${BUILD_ID}"
             }
         }
 
@@ -36,7 +36,7 @@ pipeline {
                 build job: 'devops-deploy-k8s',
                 parameters: [
                     string(name: 'DEPLOY_TO', value: "qa"),
-                    string(name: 'IMAGE_ID', value: $BUILD_ID)
+                    string(name: 'IMAGE_ID', value: '7')
                 ]
             }   
         }
@@ -49,7 +49,7 @@ pipeline {
                 build job: 'devops-deploy-k8s',
                 parameters: [
                     string(name: 'DEPLOY_TO', value: "prod"),
-                    string(name: 'IMAGE_ID', value: $BUILD_ID)
+                    string(name: 'IMAGE_ID', value: '7')
                 ]
             }   
         }
