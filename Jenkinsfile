@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Building Docker image') {
             steps {
-                sh 'docker build . --tag immassive/devops:${BUILD_ID}'
+                sh "docker build . --tag immassive/devops:${BUILD_ID}"
             }
         }
         stage('Pushing Docker image') {
