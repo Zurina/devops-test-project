@@ -26,7 +26,7 @@ pipeline {
             }
         }
 
-        stage('Run QA Deployment') {
+        stage('Run QA Deployment to k8s') {
             when {
                 not {
                     branch "main"
@@ -36,12 +36,12 @@ pipeline {
                 build job: 'devops-deploy-k8s',
                 parameters: [
                     string(name: 'DEPLOY_TO', value: "qa"),
-                    string(name: 'IMAGE_ID', value: ${BUILD_ID})
+                    string(name: 'IMAGE_ID', value: $BUILD_ID)
                 ]
             }   
         }
 
-        stage('Run PROD Deployment') {
+        stage('Run PROD Deployment to k8s') {
             when {
                 branch "main"
             }
@@ -49,7 +49,7 @@ pipeline {
                 build job: 'devops-deploy-k8s',
                 parameters: [
                     string(name: 'DEPLOY_TO', value: "prod"),
-                    string(name: 'IMAGE_ID', value: ${BUILD_ID})
+                    string(name: 'IMAGE_ID', value: $BUILD_ID)
                 ]
             }   
         }
