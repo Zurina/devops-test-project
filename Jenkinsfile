@@ -19,11 +19,23 @@ pipeline {
             }            
         }
 
+        stage('Run CLOUD Deployment') {
+            when {
+                branch "cloud"
+            }
+            steps {
+                build job: 'devops-deploy',
+                parameters: [
+                    string(name: 'DEPLOY_TO', value: "cloud"),
+                    string(name: 'branch', value: env.BRANCH_NAME),
+                    string(name: 'host_ip', value: '107.21.71.63')
+                ]
+            }   
+        }
+
         stage('Run QA Deployment') {
             when {
-                not {
-                    branch "main"
-                }
+                branch "qa"
             }
             steps {
                 build job: 'devops-deploy',
